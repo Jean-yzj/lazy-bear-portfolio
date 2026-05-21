@@ -22,21 +22,25 @@ const works = [
       { name: '分享卡牌', desc: '一鍵把今天召喚到的香方卡牌變成可分享的圖卡，傳給朋友看。' },
     ],
     why: '我相信選香水不該是花錢試錯的過程。我想把它變成一場儀式 — 像每天抽一張塔羅，今天的你，配上今天的味道。',
+    stack: ['Next.js', 'Postgres', 'OpenAI', 'Zeabur'],
+    date: '2026.05',
   },
   {
     no: 'TWO',
     title: '養魚工具',
     titleEn: 'YOFISH',
-    tagline: '為水族缸主理人設計的日常管理工具。',
+    tagline: '讓養魚這件事，變成一件優雅的事。',
     url: 'https://fishmangemant.zeabur.app',
     sigil: 'wave',
     features: [
       { name: '建立水族檔案', desc: '為每一個缸、每一條魚建立檔案，水質參數與設備配置一目了然。' },
       { name: '排程提醒', desc: '餵食、換水、用藥、設備清潔通通排程化，到時間自動提醒，不漏掉任何一次。' },
       { name: '健康日誌', desc: '為每一條魚記錄健康狀態、用藥歷程，每一次異常都會被存進可追溯的時間軸。' },
-      { name: '一鍵切換多缸', desc: '同時管理多個水族缸的主理人，可在不同缸之間快速切換。' },
+      { name: '一鍵切換多缸', desc: '同時養著好幾個缸的你，也能在不同缸之間快速切換、各自管理。' },
     ],
-    why: '我想讓水族缸主理人專心享受看魚的時光。那些瑣碎到讓人想放棄的細節，就交給工具去管。',
+    why: '我想讓養魚的你專心享受看魚的時光。那些瑣碎到讓人想放棄的細節，就交給工具去管。',
+    stack: ['Next.js', 'Postgres', 'Zeabur'],
+    date: '2026.04',
   },
   {
     no: 'THREE',
@@ -52,6 +56,8 @@ const works = [
       { name: '筆記與心得', desc: '為每本書留下重點筆記、想法、心得，未來翻回去也能立刻想起當下的感受。' },
     ],
     why: '我有太多「想讀但沒讀完」的書。我想要一個工具，能溫柔地推著我把它們真的讀完。',
+    stack: ['Next.js', 'Postgres', 'Zeabur'],
+    date: '2026.05',
   },
   {
     no: 'FOUR',
@@ -67,6 +73,8 @@ const works = [
       { name: '洞察報告', desc: '把你 8 週的變化整理成一份完整報告，你會清楚看到自己變好了多少。' },
     ],
     why: '焦慮、失眠、注意力渙散，常常不是意志力的問題 — 是大腦真的太累了。這個工具，是給那個總是覺得自己不夠努力的你。',
+    stack: ['Next.js', 'Postgres', 'Zeabur'],
+    date: '2026.05',
   },
   {
     no: 'FIVE',
@@ -82,6 +90,8 @@ const works = [
       { name: '個人化關係報告', desc: '產出一份只屬於你們倆的關係報告，可以收藏，也可以給對方看。' },
     ],
     why: '我想知道，那些和我聊了好多年的朋友，跟我到底是什麼關係。文字裡藏著很多我們自己都沒注意到的線索。',
+    stack: ['Next.js', 'OpenAI', 'Zeabur'],
+    date: '2026.05',
   },
   {
     no: 'SIX',
@@ -97,6 +107,8 @@ const works = [
       { name: '專屬星座建議', desc: '依你的太陽 / 月亮 / 上升星座給出貼合你的長期建議。' },
     ],
     why: '我想要一個介面像魔法書的占卜工具。每一次翻開，都讓人覺得自己被宇宙好好對待。',
+    stack: ['Next.js', 'Postgres', 'Zeabur'],
+    date: '2026.05',
   },
 ];
 
@@ -212,11 +224,6 @@ function renderModal(work) {
     <div class="modal__corner modal__corner--tr"></div>
     <div class="modal__corner modal__corner--bl"></div>
     <div class="modal__corner modal__corner--br"></div>
-    <button class="modal__close" type="button" aria-label="關閉">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 5 L19 19 M19 5 L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-      </svg>
-    </button>
     <div class="modal__inner">
       <div class="modal__sigil">${sigils[work.sigil] || sigils.star}</div>
       <p class="modal__no">${work.no}</p>
@@ -234,6 +241,19 @@ function renderModal(work) {
       <section class="modal__section">
         <p class="modal__section-label">FEATURES · 主要功能</p>
         <ul class="features">${featuresHTML}</ul>
+      </section>
+
+      <section class="modal__meta">
+        <div class="meta-row">
+          <span class="meta-row__label">STACK</span>
+          <span class="meta-row__divider">·</span>
+          <span class="meta-row__value">${(work.stack || []).join(' / ')}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-row__label">BUILT</span>
+          <span class="meta-row__divider">·</span>
+          <span class="meta-row__value">${work.date || ''}</span>
+        </div>
       </section>
 
       <section class="modal__section modal__section--why">
@@ -258,8 +278,6 @@ function openModal(idx) {
   if (!work) return;
   openIndex = idx;
   modal.innerHTML = renderModal(work);
-  // wire close button
-  modal.querySelector('.modal__close')?.addEventListener('click', closeModal);
   // open
   document.body.classList.add('is-modal-open');
   requestAnimationFrame(() => {
@@ -347,6 +365,51 @@ function setupStarfield() {
   if (!prefersReducedMotion) requestAnimationFrame(draw);
 }
 
+/* ---------- 滑鼠星塵尾巴 ---------- */
+function setupTrail() {
+  if (prefersReducedMotion) return;
+  // 觸控裝置略過
+  if (window.matchMedia('(hover: none)').matches) return;
+  const root = document.getElementById('trail');
+  if (!root) return;
+
+  let lastSpawn = 0;
+  const interval = 28; // ms
+  let counter = 0;
+
+  function spawn(x, y) {
+    const span = document.createElement('span');
+    const isGold = Math.random() < 0.55;
+    span.className = isGold ? 'gold' : 'blue';
+    const size = (3 + Math.random() * 5).toFixed(1);
+    span.style.left = x + 'px';
+    span.style.top = y + 'px';
+    span.style.width = size + 'px';
+    span.style.height = size + 'px';
+    const dx = ((Math.random() - 0.5) * 30).toFixed(1);
+    const dy = ((Math.random() - 0.5) * 30 - 8).toFixed(1);
+    span.style.setProperty('--dx', dx + 'px');
+    span.style.setProperty('--dy', dy + 'px');
+    root.appendChild(span);
+    counter++;
+    span.addEventListener('animationend', () => span.remove(), { once: true });
+    // safety cap
+    if (counter > 80) {
+      const first = root.firstChild;
+      if (first) first.remove();
+      counter--;
+    }
+  }
+
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return;
+    const now = performance.now();
+    if (now - lastSpawn < interval) return;
+    lastSpawn = now;
+    spawn(e.clientX, e.clientY);
+  }, { passive: true });
+}
+
 /* ---------- Reveal on scroll ---------- */
 function setupReveal() {
   const els = document.querySelectorAll('[data-reveal]:not(.is-revealed)');
@@ -371,6 +434,8 @@ function setupGlobal() {
       if (e.target === backdrop) closeModal();
     });
   }
+  const closeBtn = document.getElementById('modalCloseGlobal');
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
 }
 
 /* ---------- 啟動 ---------- */
@@ -379,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.hero > *').forEach(el => el.setAttribute('data-reveal', ''));
   makeSparkles(40);
   setupStarfield();
+  setupTrail();
   setupGlobal();
   requestAnimationFrame(setupReveal);
 });
