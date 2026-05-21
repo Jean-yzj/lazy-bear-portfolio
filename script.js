@@ -4,104 +4,106 @@
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- 作品資料 ----------
-   描述為草稿，使用者隨時可在這裡編輯。
-   每張卡的圖示是 SVG（不同的星座/魔法符號）。
-*/
+/* ---------- 作品資料 ---------- */
 const works = [
   {
     no: 'ONE',
     title: '香水羅盤',
     titleEn: 'Le Compas',
-    desc: '為每一段情緒找到對的香氣。輸入心情、場景與偏好，AI 在無數香水中為你導航出最契合的選擇。',
+    desc: '用 AI 為你召喚一張屬於今天的香氛卡牌。輸入今天的心情、習慣、想要的香調、強度、季節、氛圍與預算，系統會在數百款香水中導航出最契合此刻的那一支。深夜星空與燭金的對比配色，把選香變成一場儀式。',
     url: 'https://lazybear-perfume.zeabur.app',
+    shot: 'assets/screenshots/perfume.png',
     sigil: 'compass',
   },
   {
     no: 'TWO',
     title: '養魚工具',
-    titleEn: 'Aquarius',
-    desc: '讓水族缸主理人專心享受。餵食、換水、用藥週期自動編排，所有日常都化作清單與提醒。',
+    titleEn: 'YOFISH',
+    desc: '為水族缸主理人設計的日常管理工具。把餵食、換水、用藥、設備清潔的時程通通排好，每一條魚的健康狀況都會被存進一條可追溯的時間軸。只要享受看魚的時光，瑣事交給 YOFISH。',
     url: 'https://fishmangemant.zeabur.app',
+    shot: 'assets/screenshots/fish.png',
     sigil: 'wave',
   },
   {
     no: 'THREE',
     title: 'SmartRead',
     titleEn: 'The Book',
-    desc: '把每一本想讀的書變成計畫。從目標頁數到閱讀節奏，讓「持續閱讀」變成一件不費力的事。',
+    desc: '讓「想讀的書」真的被讀完。建立書單、設定每日目標頁數、追蹤進度百分比、為每本書留下重點筆記與心得。介面像一座溫暖的紙本書房，把「持續閱讀」變成一件不費力的儀式。',
     url: 'https://smartread-echo.zeabur.app',
+    shot: 'assets/screenshots/smartread.png',
     sigil: 'book',
   },
   {
     no: 'FOUR',
-    title: '大腦恢復',
+    title: '大腦不疲勞',
     titleEn: 'The Rest',
-    desc: '為大腦設計的休息儀式。用結構化的方法緩解疲勞，把專注力穩定地、優雅地找回來。',
+    desc: '為過載的大腦設計的 8 週恢復系統。從 6 題自我檢測開始，分析疲勞型態，每日打卡記錄情緒、睡眠與注意力，再用洞察報告呈現你的恢復軌跡。專為「焦慮、失眠、注意力渙散」族群打造。',
     url: 'https://brain-recovery.zeabur.app',
+    shot: 'assets/screenshots/brain.png',
     sigil: 'lotus',
   },
   {
     no: 'FIVE',
     title: '好朋友分析',
     titleEn: 'The Bond',
-    desc: '用數據看見友誼的形狀。理解朋友的個性、相處模式，以及你們之間悄悄發生的化學反應。',
+    desc: '把你和好朋友的 LINE 對話丟進來，AI 會從多年聊天記錄中萃取出 3 大關係軸線（創意對手、垃圾話友、心靈樹洞互負組），並用 12 個切面深入分析你們之間沒被注意過的細節。',
     url: 'https://hi-goodfriend.zeabur.app',
+    shot: 'assets/screenshots/goodfriend.png',
     sigil: 'bond',
   },
   {
     no: 'SIX',
-    title: '星座算命',
+    title: '星之占卜',
     titleEn: 'The Star',
-    desc: '把星空變成一場儀式。輸入生辰，獲得當日運勢、感情指引，以及只屬於你的星座建議。',
+    desc: '把星空變成一場儀式。輸入出生年月日、時辰與地點，獲得屬於你的命盤、當日運勢、感情指引與專屬星座建議。櫻粉與金沙的浪漫配色，每一次占卜都像翻開一頁魔法書。',
     url: 'https://zodiac-jean.zeabur.app',
+    shot: 'assets/screenshots/zodiac.png',
     sigil: 'star',
   },
 ];
 
-/* ---------- SVG 卡牌符號 ---------- */
+/* ---------- SVG 卡背符號（金線版） ---------- */
 const sigils = {
   compass: `<svg viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#6BA3D6" stroke-width="0.8"/>
-    <circle cx="50" cy="50" r="34" stroke="#A5C9E5" stroke-width="0.6" stroke-dasharray="1 3"/>
-    <path d="M50 14 L56 50 L50 86 L44 50 Z" fill="#B8D4E8" stroke="#2C5A8B" stroke-width="0.6"/>
-    <path d="M14 50 L50 44 L86 50 L50 56 Z" fill="#ECF4FB" stroke="#6BA3D6" stroke-width="0.6"/>
-    <circle cx="50" cy="50" r="3" fill="#2C5A8B"/>
+    <circle cx="50" cy="50" r="44" stroke="#E8D5B2" stroke-width="0.8"/>
+    <circle cx="50" cy="50" r="34" stroke="#C9A876" stroke-width="0.6" stroke-dasharray="1 3"/>
+    <path d="M50 14 L56 50 L50 86 L44 50 Z" fill="rgba(232,213,178,0.25)" stroke="#E8D5B2" stroke-width="0.7"/>
+    <path d="M14 50 L50 44 L86 50 L50 56 Z" fill="rgba(232,213,178,0.15)" stroke="#C9A876" stroke-width="0.6"/>
+    <circle cx="50" cy="50" r="3" fill="#E8D5B2"/>
   </svg>`,
   wave: `<svg viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#6BA3D6" stroke-width="0.8"/>
-    <path d="M14 56 Q26 44 38 56 T62 56 T86 56" stroke="#6BA3D6" stroke-width="1.4" fill="none"/>
-    <path d="M14 66 Q26 54 38 66 T62 66 T86 66" stroke="#A5C9E5" stroke-width="1" fill="none"/>
-    <path d="M14 46 Q26 34 38 46 T62 46 T86 46" stroke="#B8D4E8" stroke-width="1" fill="none"/>
-    <circle cx="50" cy="30" r="3" fill="#6BA3D6"/>
+    <circle cx="50" cy="50" r="44" stroke="#E8D5B2" stroke-width="0.8"/>
+    <path d="M14 56 Q26 44 38 56 T62 56 T86 56" stroke="#E8D5B2" stroke-width="1.2" fill="none"/>
+    <path d="M14 66 Q26 54 38 66 T62 66 T86 66" stroke="#C9A876" stroke-width="0.9" fill="none"/>
+    <path d="M14 46 Q26 34 38 46 T62 46 T86 46" stroke="#C9A876" stroke-width="0.9" fill="none"/>
+    <circle cx="50" cy="30" r="3" fill="#E8D5B2"/>
   </svg>`,
   book: `<svg viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#6BA3D6" stroke-width="0.8"/>
-    <path d="M28 32 L50 38 L72 32 L72 70 L50 76 L28 70 Z" fill="#ECF4FB" stroke="#2C5A8B" stroke-width="0.8"/>
-    <path d="M50 38 L50 76" stroke="#6BA3D6" stroke-width="0.8"/>
-    <path d="M34 42 L46 44 M34 50 L46 52 M34 58 L46 60 M54 44 L66 42 M54 52 L66 50 M54 60 L66 58" stroke="#A5C9E5" stroke-width="0.6"/>
+    <circle cx="50" cy="50" r="44" stroke="#E8D5B2" stroke-width="0.8"/>
+    <path d="M28 32 L50 38 L72 32 L72 70 L50 76 L28 70 Z" fill="rgba(232,213,178,0.15)" stroke="#E8D5B2" stroke-width="0.8"/>
+    <path d="M50 38 L50 76" stroke="#C9A876" stroke-width="0.7"/>
+    <path d="M34 42 L46 44 M34 50 L46 52 M34 58 L46 60 M54 44 L66 42 M54 52 L66 50 M54 60 L66 58" stroke="#C9A876" stroke-width="0.6"/>
   </svg>`,
   lotus: `<svg viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#6BA3D6" stroke-width="0.8"/>
-    <path d="M50 24 Q60 40 50 56 Q40 40 50 24" fill="#ECF4FB" stroke="#6BA3D6" stroke-width="0.8"/>
-    <path d="M30 38 Q42 48 50 56 Q44 42 30 38" fill="#F5FAFE" stroke="#A5C9E5" stroke-width="0.8"/>
-    <path d="M70 38 Q58 48 50 56 Q56 42 70 38" fill="#F5FAFE" stroke="#A5C9E5" stroke-width="0.8"/>
-    <path d="M22 56 Q36 60 50 60 Q40 52 22 56" fill="#ECF4FB" stroke="#6BA3D6" stroke-width="0.8"/>
-    <path d="M78 56 Q64 60 50 60 Q60 52 78 56" fill="#ECF4FB" stroke="#6BA3D6" stroke-width="0.8"/>
-    <ellipse cx="50" cy="62" rx="20" ry="3" fill="#B8D4E8"/>
+    <circle cx="50" cy="50" r="44" stroke="#E8D5B2" stroke-width="0.8"/>
+    <path d="M50 24 Q60 40 50 56 Q40 40 50 24" fill="rgba(232,213,178,0.2)" stroke="#E8D5B2" stroke-width="0.7"/>
+    <path d="M30 38 Q42 48 50 56 Q44 42 30 38" fill="rgba(232,213,178,0.12)" stroke="#C9A876" stroke-width="0.7"/>
+    <path d="M70 38 Q58 48 50 56 Q56 42 70 38" fill="rgba(232,213,178,0.12)" stroke="#C9A876" stroke-width="0.7"/>
+    <path d="M22 56 Q36 60 50 60 Q40 52 22 56" fill="rgba(232,213,178,0.2)" stroke="#E8D5B2" stroke-width="0.7"/>
+    <path d="M78 56 Q64 60 50 60 Q60 52 78 56" fill="rgba(232,213,178,0.2)" stroke="#E8D5B2" stroke-width="0.7"/>
   </svg>`,
   bond: `<svg viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#6BA3D6" stroke-width="0.8"/>
-    <circle cx="40" cy="50" r="16" stroke="#6BA3D6" stroke-width="0.9" fill="rgba(184,212,232,0.25)"/>
-    <circle cx="60" cy="50" r="16" stroke="#2C5A8B" stroke-width="0.9" fill="rgba(184,212,232,0.25)"/>
-    <circle cx="40" cy="50" r="2.5" fill="#6BA3D6"/>
-    <circle cx="60" cy="50" r="2.5" fill="#2C5A8B"/>
+    <circle cx="50" cy="50" r="44" stroke="#E8D5B2" stroke-width="0.8"/>
+    <circle cx="40" cy="50" r="16" stroke="#E8D5B2" stroke-width="0.9" fill="rgba(232,213,178,0.1)"/>
+    <circle cx="60" cy="50" r="16" stroke="#C9A876" stroke-width="0.9" fill="rgba(232,213,178,0.1)"/>
+    <circle cx="40" cy="50" r="2.4" fill="#E8D5B2"/>
+    <circle cx="60" cy="50" r="2.4" fill="#C9A876"/>
   </svg>`,
   star: `<svg viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="44" stroke="#6BA3D6" stroke-width="0.8"/>
+    <circle cx="50" cy="50" r="44" stroke="#E8D5B2" stroke-width="0.8"/>
     <path d="M50 18 L57 42 L82 42 L62 56 L70 80 L50 65 L30 80 L38 56 L18 42 L43 42 Z"
-          fill="#ECF4FB" stroke="#2C5A8B" stroke-width="0.8"/>
-    <circle cx="50" cy="50" r="3" fill="#6BA3D6"/>
+          fill="rgba(232,213,178,0.18)" stroke="#E8D5B2" stroke-width="0.7"/>
+    <circle cx="50" cy="50" r="3" fill="#C9A876"/>
   </svg>`,
 };
 
@@ -110,20 +112,48 @@ function renderCards() {
   const wrap = document.getElementById('cards');
   if (!wrap) return;
   wrap.innerHTML = works.map((w, i) => `
-    <a class="card" href="${w.url}" target="_blank" rel="noopener" data-reveal style="transition-delay: ${i * 80}ms">
-      <span class="card__shine"></span>
-      <span class="card__corner card__corner--tl"></span>
-      <span class="card__corner card__corner--tr"></span>
-      <span class="card__corner card__corner--bl"></span>
-      <span class="card__corner card__corner--br"></span>
-      <div class="card__sigil">${sigils[w.sigil] || sigils.star}</div>
-      <p class="card__num">${w.no}</p>
-      <h3 class="card__title">${w.title}</h3>
-      <p class="card__title-en">${w.titleEn}</p>
-      <p class="card__desc">${w.desc}</p>
-      <span class="card__open">OPEN ✦</span>
-    </a>
+    <button class="card" type="button" data-reveal style="transition-delay: ${i * 70}ms" aria-label="${w.title} — 點擊翻面看詳情">
+      <div class="card__inner">
+        <article class="card__face card__front">
+          <span class="card__corner card__corner--tl"></span>
+          <span class="card__corner card__corner--tr"></span>
+          <span class="card__corner card__corner--bl"></span>
+          <span class="card__corner card__corner--br"></span>
+          <p class="card__no">${w.no}</p>
+          <div class="card__shot">
+            <img src="${w.shot}" alt="${w.title} 介面截圖" loading="lazy" />
+          </div>
+          <h3 class="card__title">${w.title}</h3>
+          <p class="card__title-en">${w.titleEn}</p>
+          <p class="card__hint">點擊翻面 ✦ FLIP</p>
+        </article>
+
+        <article class="card__face card__back">
+          <span class="card__corner card__corner--tl"></span>
+          <span class="card__corner card__corner--tr"></span>
+          <span class="card__corner card__corner--bl"></span>
+          <span class="card__corner card__corner--br"></span>
+          <div class="card__sigil">${sigils[w.sigil] || sigils.star}</div>
+          <h3 class="card__back-title">${w.title}</h3>
+          <p class="card__back-title-en">${w.titleEn}</p>
+          <div class="card__back-divider"></div>
+          <p class="card__desc">${w.desc}</p>
+          <a class="card__open" href="${w.url}" target="_blank" rel="noopener" data-stop>
+            開啟連結 ✦ OPEN
+          </a>
+          <p class="card__flip-back">CLICK TO FLIP BACK</p>
+        </article>
+      </div>
+    </button>
   `).join('');
+
+  // 點擊翻面（按鈕內的連結 stopPropagation）
+  wrap.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-stop]')) return;
+      card.classList.toggle('is-flipped');
+    });
+  });
 }
 
 /* ---------- Sparkles ---------- */
@@ -145,7 +175,7 @@ function makeSparkles(count = 50) {
   root.appendChild(frag);
 }
 
-/* ---------- 背景星空（canvas） ---------- */
+/* ---------- 背景星空 canvas ---------- */
 function setupStarfield() {
   const canvas = document.getElementById('starfield');
   if (!canvas) return;
@@ -162,15 +192,19 @@ function setupStarfield() {
     seed();
   }
   function seed() {
-    const count = Math.round((innerWidth * innerHeight) / 14000);
-    stars = Array.from({ length: count }, () => ({
-      x: Math.random() * innerWidth,
-      y: Math.random() * innerHeight,
-      r: Math.random() * 1.2 + 0.2,
-      a: Math.random() * 0.5 + 0.2,
-      tw: Math.random() * 0.012 + 0.004,
-      d: Math.random() < 0.5 ? -1 : 1,
-    }));
+    const count = Math.round((innerWidth * innerHeight) / 16000);
+    stars = Array.from({ length: count }, () => {
+      const isGold = Math.random() < 0.35;
+      return {
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        r: Math.random() * 1.2 + 0.2,
+        a: Math.random() * 0.5 + 0.2,
+        tw: Math.random() * 0.012 + 0.004,
+        d: Math.random() < 0.5 ? -1 : 1,
+        gold: isGold,
+      };
+    });
   }
   function draw() {
     ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -179,7 +213,9 @@ function setupStarfield() {
       if (s.a <= 0.1 || s.a >= 0.7) s.d *= -1;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(107, 163, 214, ${s.a})`;
+      ctx.fillStyle = s.gold
+        ? `rgba(201, 168, 118, ${s.a})`
+        : `rgba(107, 163, 214, ${s.a})`;
       ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -187,73 +223,6 @@ function setupStarfield() {
   resize();
   window.addEventListener('resize', resize);
   if (!prefersReducedMotion) requestAnimationFrame(draw);
-}
-
-/* ---------- Hero 滑鼠視差 ---------- */
-function setupHeroParallax() {
-  if (prefersReducedMotion) return;
-  const hero = document.querySelector('.hero');
-  const layers = document.querySelectorAll('[data-parallax]');
-  if (!hero || layers.length === 0) return;
-
-  let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-  const lerp = (a, b, t) => a + (b - a) * t;
-
-  hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-  });
-  hero.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
-
-  function loop() {
-    currentX = lerp(currentX, targetX, 0.05);
-    currentY = lerp(currentY, targetY, 0.05);
-    layers.forEach((el) => {
-      const depth = parseFloat(el.dataset.parallax) || 1;
-      const x = -currentX * depth * 16;
-      const y = -currentY * depth * 16;
-      el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-    });
-    requestAnimationFrame(loop);
-  }
-  loop();
-}
-
-/* ---------- 卡片 3D 傾斜 ---------- */
-function setupCardTilt() {
-  if (prefersReducedMotion) return;
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
-    let rafId = null;
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      const rx = (0.5 - y) * 6;
-      const ry = (x - 0.5) * 6;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        card.style.transform = `translateY(-8px) perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-      });
-    });
-    card.addEventListener('mouseleave', () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      card.style.transform = '';
-    });
-  });
-}
-
-/* ---------- 滾動顯示 nav ---------- */
-function setupNav() {
-  const nav = document.getElementById('nav');
-  if (!nav) return;
-  const onScroll = () => {
-    if (window.scrollY > 240) nav.classList.add('is-visible');
-    else nav.classList.remove('is-visible');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 }
 
 /* ---------- Reveal on scroll ---------- */
@@ -274,19 +243,10 @@ function setupReveal() {
 document.addEventListener('DOMContentLoaded', () => {
   renderCards();
 
-  // 把幾組元素自動加上 reveal
-  document.querySelectorAll(
-    '.hero__content > *, .intro__inner > *, .works__header > *, .divider'
-  ).forEach(el => el.setAttribute('data-reveal', ''));
+  document.querySelectorAll('.hero > *').forEach(el => el.setAttribute('data-reveal', ''));
 
-  makeSparkles(50);
+  makeSparkles(40);
   setupStarfield();
-  setupHeroParallax();
-  setupNav();
 
-  // 等卡片插入後啟動 reveal + tilt
-  requestAnimationFrame(() => {
-    setupReveal();
-    setupCardTilt();
-  });
+  requestAnimationFrame(setupReveal);
 });
