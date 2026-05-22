@@ -195,7 +195,14 @@ function renderCards() {
       <h3 class="card__title">${w.title}</h3>
       <p class="card__title-en">${w.titleEn}</p>
       <p class="card__tag">${w.tagline}</p>
-      <p class="card__hint">OPEN ✦ 點擊放大</p>
+      <div class="card__ornament" aria-hidden="true">
+        <svg viewBox="0 0 80 12">
+          <line x1="0" y1="6" x2="30" y2="6" stroke="#C9A876" stroke-width="0.5" stroke-dasharray="1 3"/>
+          <path d="M40,2 L41,5 L44,6 L41,7 L40,10 L39,7 L36,6 L39,5 Z" fill="#C9A876"/>
+          <line x1="50" y1="6" x2="80" y2="6" stroke="#C9A876" stroke-width="0.5" stroke-dasharray="1 3"/>
+        </svg>
+      </div>
+      <p class="card__hint">OPEN · 點擊放大</p>
     </button>
   `).join('');
 
