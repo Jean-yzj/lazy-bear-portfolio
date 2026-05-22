@@ -156,43 +156,38 @@ a:focus-visible, button:focus-visible {
   text-transform: uppercase;
 }
 
-/* IG link (used in top bar + footer) */
+/* IG link (used in top bar + footer) — minimal, elegant */
 .ig-link {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   text-decoration: none;
   color: var(--blue);
-  transition: all 0.35s var(--ease);
-  font-family: var(--font-display);
-  letter-spacing: 4px;
-  font-size: 11px;
+  transition: color 0.35s var(--ease);
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  line-height: 1;
 }
 .ig-link__icon {
-  width: 18px; height: 18px;
+  width: 16px !important;
+  height: 16px !important;
   flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity 0.35s var(--ease);
 }
-.ig-link__handle {
-  transform: translateY(1px);
-}
-.ig-link:hover { color: var(--gold); transform: translateY(-1px); }
-.ig-link:hover .ig-link__icon { filter: drop-shadow(0 0 6px rgba(201, 168, 118, 0.55)); }
-
-.ig-link--top {
-  padding: 6px 14px;
-  border: 1px solid rgba(184, 212, 232, 0.5);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.5);
-  backdrop-filter: blur(6px);
-}
-.ig-link--top:hover {
-  border-color: var(--gold);
-  background: rgba(255, 253, 246, 0.85);
-}
+.ig-link__handle { padding-bottom: 1px; }
+.ig-link:hover { color: var(--gold); }
+.ig-link:hover .ig-link__icon { opacity: 1; }
 
 .ig-link--footer {
-  margin-top: 12px;
+  margin-top: 14px;
+  font-size: 14px;
+  opacity: 0.7;
 }
+.ig-link--footer:hover { opacity: 1; }
 @keyframes spin-slow    { to { transform: rotate(360deg); } }
 @keyframes spin-reverse { to { transform: rotate(-360deg); } }
 
@@ -788,8 +783,9 @@ a:focus-visible, button:focus-visible {
 @media (max-width: 720px) {
   .top-bar { padding: 14px 18px; }
   .top-bar__meta { display: none; }
-  .ig-link--top { padding: 5px 10px; font-size: 10px; letter-spacing: 2px; gap: 6px; }
-  .ig-link--top .ig-link__icon { width: 15px; height: 15px; }
+  .ig-link--top { font-size: 13px; gap: 6px; }
+  .ig-link--top .ig-link__handle { display: none; }
+  .ig-link--top .ig-link__icon { width: 18px; height: 18px; }
   .brand__name { font-size: 15px; letter-spacing: 4px; }
   .brand__en { font-size: 9px; letter-spacing: 3px; padding-left: 8px; }
 
